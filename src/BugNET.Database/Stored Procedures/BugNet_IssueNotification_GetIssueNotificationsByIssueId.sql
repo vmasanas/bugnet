@@ -26,6 +26,7 @@ FROM
 	LEFT OUTER JOIN BugNet_UserProfiles UP ON U.UserName = UP.UserName
 WHERE
 	IssueId = @IssueId
+	AND M.Email IS NOT NULL
 ORDER BY
 	DisplayName
 
@@ -52,5 +53,6 @@ WHERE
 	AND u.UserId = p.UserId
 	AND u.UserId = m.UserId
 	AND u.UserName = up.UserName
+	AND m.Email IS NOT NULL
 
 SELECT DISTINCT IssueId,NotificationUserId, NotificationUserName, NotificationDisplayName, NotificationEmail, NotificationCulture FROM @tmpTable ORDER BY NotificationDisplayName
