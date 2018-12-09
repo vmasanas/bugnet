@@ -306,6 +306,7 @@ namespace BugNET.Providers.DataProviders
                         ManagerUserName = returnData.GetString(returnData.GetOrdinal("ManagerUserName")),
                         SvnRepositoryUrl = returnData.GetString(returnData.GetOrdinal("SvnRepositoryUrl")),
                         UploadPath = returnData.GetString(returnData.GetOrdinal("AttachmentUploadPath")),
+                        AttachmentStorageType = (IssueAttachmentStorageTypes)returnData["AttachmentStorageType"],
                         DateCreated = returnData.GetDateTime(returnData.GetOrdinal("DateCreated"))
                     });
             }

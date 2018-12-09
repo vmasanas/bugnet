@@ -19,7 +19,7 @@ namespace BugNET.Common
 
         public const string CONFIG_FOLDER = "\\Config\\";
         public const string UPLOAD_TOKEN = "UploadToken";
-        public const int UPLOAD_FOLDER_LIMIT = 64;
+        public const int UPLOAD_FOLDER_LIMIT = 200;
 
         public const string SKIP_PROJECT_INTRO = "skipprojectintro";
         public const string UNASSIGNED_DISPLAY_TEXT = "none";

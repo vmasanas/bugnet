@@ -19,11 +19,21 @@ namespace BugNET.BLL
         /// <returns></returns>
         public static bool SaveOrUpdate(Project entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            //if (entity == null) throw new ArgumentNullException("entity");
             if (string.IsNullOrEmpty(entity.Name)) throw (new ArgumentException("The project name cannot be empty or null"));
 
             if (entity.Id > 0)
+            {
+                // check attachment folder
+                if (entity.AttachmentStorageType == IssueAttachmentStorageTypes.FileSystem &&
+                    string.IsNullOrEmpty(entity.UploadPath))
+                {
+                    entity.UploadPath = Guid.NewGuid().ToString();
+                    CreateUploadFolder(entity);
+                }
+
                 return (Update(entity));
+            }
 
             entity.UploadPath = Guid.NewGuid().ToString();
             var tempId = DataProviderManager.Provider.CreateNewProject(entity);
@@ -50,35 +60,40 @@ namespace BugNET.BLL
             }
 
             //create attachment directory
-            if (HostSettingManager.Get(HostSettingNames.AttachmentStorageType, 0) == (int)IssueAttachmentStorageTypes.FileSystem)
+            if (entity.AttachmentStorageType == IssueAttachmentStorageTypes.FileSystem)
             {
-                var uploadPath = string.Concat(HostSettingManager.Get(HostSettingNames.AttachmentUploadPath), entity.UploadPath);
-                if(uploadPath.StartsWith("~"))
-                {
-                    uploadPath = HttpContext.Current.Server.MapPath(uploadPath);
-                }
-
-
-                try
-                {
-                    // BGN-1909
-                    // Better santization of Upload Paths
-                    if (!Utilities.CheckUploadPath(uploadPath))
-                        throw new InvalidDataException(LoggingManager.GetErrorMessageResource("UploadPathInvalid"));
-
-                    Directory.CreateDirectory(uploadPath);
-                }
-                catch (Exception ex)
-                {
-                    if (Log.IsErrorEnabled)
-                        Log.Error(
-                            string.Format(
-                                LoggingManager.GetErrorMessageResource("CouldNotCreateUploadDirectory"), uploadPath), ex);
-                    return false;
-                }
+                return CreateUploadFolder(entity);
             }
 
             return true;
+        }
+
+        private static bool CreateUploadFolder(Project entity)
+        {
+            var uploadPath = string.Concat(HostSettingManager.Get(HostSettingNames.AttachmentUploadPath), entity.UploadPath);
+            if (uploadPath.StartsWith("~"))
+            {
+                uploadPath = HttpContext.Current.Server.MapPath(uploadPath);
+            }
+
+            try
+            {
+                // BGN-1909
+                // Better santization of Upload Paths
+                if (!Utilities.CheckUploadPath(uploadPath))
+                    throw new InvalidDataException(LoggingManager.GetErrorMessageResource("UploadPathInvalid"));
+
+                Directory.CreateDirectory(uploadPath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (Log.IsErrorEnabled)
+                    Log.Error(
+                        string.Format(
+                            LoggingManager.GetErrorMessageResource("CouldNotCreateUploadDirectory"), uploadPath), ex);
+                return false;
+            }
         }
 
         /// <summary>

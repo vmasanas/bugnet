@@ -220,6 +220,24 @@ namespace BugNET.Administration.Projects.UserControls {
         protected global::System.Web.UI.WebControls.FileUpload ProjectImageUploadFile;
         
         /// <summary>
+        /// ProjectImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ProjectImage;
+        
+        /// <summary>
+        /// RemoveProjectImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton RemoveProjectImage;
+        
+        /// <summary>
         /// AttachmentStorageTypeRow control.
         /// </summary>
         /// <remarks>
@@ -245,24 +263,6 @@ namespace BugNET.Administration.Projects.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList AttachmentStorageType;
-        
-        /// <summary>
-        /// ProjectImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ProjectImage;
-        
-        /// <summary>
-        /// RemoveProjectImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton RemoveProjectImage;
         
         /// <summary>
         /// Literal1 control.

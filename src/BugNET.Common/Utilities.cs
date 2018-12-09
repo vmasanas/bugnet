@@ -116,11 +116,12 @@ namespace BugNET.Common
             // Now that there are just folders left, remove the "\" character
             tmpPath = tmpPath.Replace(@"\", " ");
 
+            // fails because it contains : from c:\
             //check for illegal filename characters
-            if (tmpPath.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
-            {
-                isPathNorty = true;
-            }
+            //if (tmpPath.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
+            //{
+            //    isPathNorty = true;
+            //}
 
             // Return the opposite of norty
             return !isPathNorty;

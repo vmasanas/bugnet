@@ -71,7 +71,8 @@ namespace BugNET.Administration.Projects.UserControls
                     AllowAttachments.Checked = projectToUpdate.AllowAttachments;
                     chkAllowIssueVoting.Checked = projectToUpdate.AllowIssueVoting;
                     ProjectImage.ImageUrl = string.Format("~/DownloadAttachment.axd?id={0}&mode=project", ProjectId);
-				}
+                    AttachmentStorageType.SelectedValue = ((int)projectToUpdate.AttachmentStorageType).ToString();
+                }
 			}
 			else
 			{

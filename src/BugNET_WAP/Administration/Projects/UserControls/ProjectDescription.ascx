@@ -70,7 +70,14 @@
             <asp:FileUpload ID="ProjectImageUploadFile" runat="server" />
         </div>
     </div>
-	<div class="form-group" id="AttachmentStorageTypeRow" runat="server">
+    <div class="form-group">
+        <div class="col-md-2 col-md-offset-2">
+            <asp:Image runat="server" ID="ProjectImage" Height="62" Width="62" />
+            <br />
+            <asp:LinkButton ID="RemoveProjectImage" runat="server" Text="<%$ Resources:SharedResources, Remove %>" OnClick="RemoveProjectImage_Click"></asp:LinkButton>
+        </div>
+    </div>	
+    <div class="form-group" id="AttachmentStorageTypeRow" runat="server">
 		<asp:Label ID="Label12" CssClass="col-md-2 control-label"
 			AssociatedControlID="AttachmentStorageType" meta:resourcekey="AttachmentStorageTypeLabel" runat="server" Text="Storage Type"></asp:Label>
 		<div class="col-md-8">
@@ -80,13 +87,7 @@
 			</asp:RadioButtonList>
 		</div>
 	</div>
-    <div class="form-group">
-        <div class="col-md-2 col-md-offset-2">
-            <asp:Image runat="server" ID="ProjectImage" Height="62" Width="62" />
-            <br />
-            <asp:LinkButton ID="RemoveProjectImage" runat="server" Text="<%$ Resources:SharedResources, Remove %>" OnClick="RemoveProjectImage_Click"></asp:LinkButton>
-        </div>
-    </div>
+
     <h3><asp:Literal ID="Literal1" runat="Server" meta:resourcekey="SecurityTitle" /></h3>
     <div class="form-group">
         <asp:Label ID="Label8" AssociatedControlID="rblAccessType" meta:resourcekey="AccessTypeLabel"
