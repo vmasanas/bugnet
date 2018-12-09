@@ -28,7 +28,8 @@ SELECT DISTINCT
 	AllowAttachments,
 	AllowAttachments,
 	SvnRepositoryUrl,
-	AllowIssueVoting
+	AllowIssueVoting,
+	AttachmentStorageType
  FROM [BugNet_ProjectsView]
 	Left JOIN BugNet_UserProjects UP ON UP.ProjectId = [BugNet_ProjectsView].ProjectId 
 WHERE

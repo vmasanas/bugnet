@@ -297,7 +297,7 @@ namespace BugNET.Providers.DataProviders
                         CreatorUserName = returnData.GetString(returnData.GetOrdinal("CreatorUserName")),
                         CreatorDisplayName = returnData.GetString(returnData.GetOrdinal("CreatorDisplayName")),
                         AllowAttachments = returnData.GetBoolean(returnData.GetOrdinal("AllowAttachments")),
-                        AccessType = (ProjectAccessType)returnData["ProjectAccessType"],
+                        AccessType = (ProjectAccessType)returnData.GetInt32(returnData.GetOrdinal("ProjectAccessType")),
                         AllowIssueVoting = returnData.GetBoolean(returnData.GetOrdinal("AllowIssueVoting")),
                         Code = returnData.GetString(returnData.GetOrdinal("ProjectCode")),
                         Disabled = returnData.GetBoolean(returnData.GetOrdinal("ProjectDisabled")),
@@ -306,7 +306,7 @@ namespace BugNET.Providers.DataProviders
                         ManagerUserName = returnData.GetString(returnData.GetOrdinal("ManagerUserName")),
                         SvnRepositoryUrl = returnData.GetString(returnData.GetOrdinal("SvnRepositoryUrl")),
                         UploadPath = returnData.GetString(returnData.GetOrdinal("AttachmentUploadPath")),
-                        AttachmentStorageType = (IssueAttachmentStorageTypes)returnData["AttachmentStorageType"],
+                        AttachmentStorageType = (IssueAttachmentStorageTypes)Convert.ToInt32(returnData["AttachmentStorageType"]),
                         DateCreated = returnData.GetDateTime(returnData.GetOrdinal("DateCreated"))
                     });
             }

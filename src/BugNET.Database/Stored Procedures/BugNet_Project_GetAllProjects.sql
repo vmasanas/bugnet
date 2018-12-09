@@ -18,7 +18,8 @@ SELECT
 	CreatorDisplayName,
 	AllowAttachments,
 	SvnRepositoryUrl,
-	AllowIssueVoting
+	AllowIssueVoting,
+	AttachmentStorageType
 FROM 
 	BugNet_ProjectsView 
 WHERE (@ActiveOnly IS NULL OR (ProjectDisabled = ~@ActiveOnly))

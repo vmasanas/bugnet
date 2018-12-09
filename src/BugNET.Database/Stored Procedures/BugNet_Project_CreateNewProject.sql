@@ -12,7 +12,8 @@
  @ProjectImageFileContent varbinary(max),
  @ProjectImageFileName nvarchar(150),
  @ProjectImageContentType nvarchar(50),
- @ProjectImageFileSize bigint
+ @ProjectImageFileSize bigint,
+ @AttachmentStorageType int
 AS
 IF NOT EXISTS( SELECT ProjectId,ProjectCode  FROM BugNet_Projects WHERE LOWER(ProjectName) = LOWER(@ProjectName) OR LOWER(ProjectCode) = LOWER(@ProjectCode) )
 BEGIN
@@ -37,7 +38,8 @@ BEGIN
 		ProjectImageFileContent,
 		ProjectImageFileName,
 		ProjectImageContentType,
-		ProjectImageFileSize
+		ProjectImageFileSize,
+		AttachmentStorageType
 	) 
 	VALUES
 	(
@@ -55,7 +57,8 @@ BEGIN
 		@ProjectImageFileContent,
 		@ProjectImageFileName,
 		@ProjectImageContentType,
-		@ProjectImageFileSize
+		@ProjectImageFileSize,
+		@AttachmentStorageType
 	)
  	RETURN scope_identity()
 END

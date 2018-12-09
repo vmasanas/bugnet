@@ -6,14 +6,15 @@
  @ProjectManagerUserName	nvarchar(255),
  @AttachmentUploadPath 		nvarchar(80),
  @ProjectAccessType			int,
- @ProjectDisabled			int,
+ @ProjectDisabled			bit,
  @AllowAttachments			bit,
  @SvnRepositoryUrl	nvarchar(255),
  @AllowIssueVoting bit,
  @ProjectImageFileContent varbinary(max),
  @ProjectImageFileName nvarchar(150),
  @ProjectImageContentType nvarchar(50),
- @ProjectImageFileSize bigint
+ @ProjectImageFileSize bigint,
+ @AttachmentStorageType int
 AS
 DECLARE @ProjectManagerUserId UNIQUEIDENTIFIER
 SELECT @ProjectManagerUserId = UserId FROM Users WHERE UserName = @ProjectManagerUserName
@@ -29,7 +30,8 @@ IF @ProjectImageFileContent IS NULL
 		ProjectDisabled = @ProjectDisabled,
 		AllowAttachments = @AllowAttachments,
 		SvnRepositoryUrl = @SvnRepositoryUrl,
-		AllowIssueVoting = @AllowIssueVoting
+		AllowIssueVoting = @AllowIssueVoting,
+		AttachmentStorageType = @AttachmentStorageType
 	WHERE
 		ProjectId = @ProjectId
 ELSE
